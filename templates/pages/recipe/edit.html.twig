@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recipe
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Modification de la recette</h1>
+
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            <div class="form-error">
+                {{ form_errors(form.name) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.time) }}
+            {{ form_widget(form.time) }}
+            <div class="form-error">
+                {{ form_errors(form.time) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.nbPeople) }}
+            {{ form_widget(form.nbPeople) }}
+            <div class="form-error">
+                {{ form_errors(form.nbPeople) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.difficulty) }}
+            {{ form_widget(form.difficulty) }}
+            <div class="form-error">
+                {{ form_errors(form.difficulty) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+            <div class="form-error">
+                {{ form_errors(form.description) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price) }}
+            <div class="form-error">
+                {{ form_errors(form.price) }}
+            </div>
+        </div>
+
+        <div class="form-check mt-4">
+            {{ form_label(form.isFavorite) }}
+            {{ form_widget(form.isFavorite) }}
+            <div class="form-error">
+                {{ form_errors(form.isFavorite) }}
+            </div>
+        </div>
+
+        {{ form_row(form.ingredients) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

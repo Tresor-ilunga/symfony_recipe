@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recipe - Mes recettes
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        {% if not recipes.items is same as([]) %}
+            <h1>Mes recettes</h1>
+
+            <a href="{{ path('recipe.new') }}" class="btn btn-primary">
+                Créer un ingredient
+            </a>
+
+            {# read and display just one flash message type #}
+            {% for message in app.flashes('success')  %}
+                <div class="alert alert-success mt-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+
+
+            {# total items count #}
+            <div class="count mt-4">
+                <h5>
+                    Il y a {{ recipes.getTotalItemCount }} recettes
+                </h5>
+            </div>
+
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Difficulté</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Suppression</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for recipe in recipes %}
+                    <tr class="table-primary">
+                        <th scope="row">{{ recipe.id }}</th>
+                        <td>{{ recipe.name }}</td>
+                        <td>
+                            {% if recipe.price is null  %}
+                                Non renseigné
+                            {% else %}
+                                {{ recipe.price }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if recipe.difficulty is null  %}
+                                Non renseigné
+                            {% else %}
+                                {{ recipe.difficulty }}
+                            {% endif %}
+                        </td>
+                        <td>{{ recipe.createdAt|date("d/m/Y") }}</td>
+                        <td>
+                            <a href="{{ path('recipe.edit', { id: recipe.id }) }}" class="btn btn-info">
+                                Modifier
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('recipe.delete', { id: recipe.id }) }}" class="btn btn-danger">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {# display navigation #}
+            <div class="navigation d-flex justify-content-center mt-4">
+                {{ knp_pagination_render(recipes) }}
+            </div>
+        {% else %}
+            <h4>Il n'y a pas d'ingrédients</h4>
+        {% endif %}
+    </div>
+{% endblock %}
