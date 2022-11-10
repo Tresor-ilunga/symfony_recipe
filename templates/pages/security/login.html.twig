@@ -7,6 +7,13 @@
     <div class="container">
         <h1 class="mt-4">Formulaire de connexion</h1>
 
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('success')  %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {% if error %}
             <div class="alert alert-danger mt-4">
                 {{ error.messageKey|trans(error.messageData, 'security') }}
