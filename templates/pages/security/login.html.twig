@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recipe - Connexion
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Formulaire de connexion</h1>
+
+        {% if error %}
+            <div class="alert alert-danger mt-4">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <form action="{{ path('security.login') }}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Addresse email</label>
+                <input type="email" name="_username"  id="username" class="form-control" value="{{ last_username }}" placeholder="exemple@recipe.com">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" name="_password" id="password" class="form-control" placeholder="Mot de passe">
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </form>
+    </div>
+{% endblock %}
