@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\UserPasswordType;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,25 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
 
+    /**
+     * This function allow us to edit user's profile
+     *
+     * @param User $chooseUser
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param UserPasswordHasherInterface $hasher
+     * @return Response
+     */
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
-    public function edit(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
+    #[Security("is_granted('ROLE_USER') and user === chooseUser")]
+    public function edit(User $chooseUser ,Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
-        if (!$this->getUser())
-        {
-            return $this->redirectToRoute('security.login');
-        }
-
-        if ($this->getUser() !== $user)
-        {
-            return $this->redirectToRoute('recipe.index');
-        }
-
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $chooseUser);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            if ($hasher->isPasswordValid($user, $form->getData()->getPlainPassword()))
+            if ($hasher->isPasswordValid($chooseUser, $form->getData()->getPlainPassword()))
             {
                 $user = $form->getData();
                 $manager->persist($user);
@@ -62,24 +63,34 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * This function allow us to edit user's password
+     *
+     * @param User $chooseUser
+     * @param Request $request
+     * @param UserPasswordHasherInterface $hasher
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/utilisateur/edition-mot-de-passe/{id}', name: 'user.edit.password', methods: ['GET', 'POST'])]
-    public function editPassword(User $user, Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $manager): Response
+    #[Security("is_granted('ROLE_USER') and user === chooseUser")]
+    public function editPassword(User $chooseUser, Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(UserPasswordType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            if ($hasher->isPasswordValid($user, $form->getData()['plainPassword']))
+            if ($hasher->isPasswordValid($chooseUser, $form->getData()['plainPassword']))
             {
-                $user->setPassword(
+                $chooseUser->setPassword(
                     $hasher->hashPassword(
-                        $user,
+                        $chooseUser,
                         $form->getData()['newPassword']
                     )
                 );
 
-                $manager->persist($user);
+                $manager->persist($chooseUser);
                 $manager->flush();
 
                 $this->addFlash
