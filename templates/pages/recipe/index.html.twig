@@ -9,7 +9,7 @@
             <h1>Mes recettes</h1>
 
             <a href="{{ path('recipe.new') }}" class="btn btn-primary">
-                Créer un ingredient
+                Créer une recette
             </a>
 
             {# read and display just one flash message type #}
@@ -79,7 +79,7 @@
                 {{ knp_pagination_render(recipes) }}
             </div>
         {% else %}
-            <h4>Il n'y a pas d'ingrédients</h4>
+            <h4>Il n'y a pas de recettes</h4>
         {% endif %}
     </div>
 {% endblock %}
