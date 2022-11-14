@@ -6,6 +6,19 @@
 {% block body %}
     <div class="container">
         <h1 class="mt-4">{{ recipe.name }}</h1>
+
+
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('success')  %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+       <p class="">
+           La moyenne de cette recette est de {{ recipe.average|number_format(2, '.', ',') }} /5
+       </p>
+
         <div>
             <span class="badge bg-primary">Crée le {{ recipe.createdAt|date('d/m/Y') }}</span>
         </div>
@@ -41,9 +54,15 @@
             {{ recipe.description|raw }}
         </div>
 
-        <p>Ingrédients</p>
-        {% for ingredient in recipe.ingredients  %}
-            <span class="badge bg-primary">{{ ingredient.name }}</span>
-        {% endfor %}
+        <div class="mt-4">
+            <p>Ingrédients</p>
+            {% for ingredient in recipe.ingredients  %}
+                <span class="badge bg-primary">{{ ingredient.name }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="">
+            {{ form(form) }}
+        </div>
     </div>
 {% endblock %}
