@@ -62,6 +62,8 @@ class RecipeController extends AbstractController
      *
      * @param Recipe $recipe
      * @param Request $request
+     * @param MarkRepository $markRepository
+     * @param EntityManagerInterface $manager
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and recipe.getIsPublic() === true")]
