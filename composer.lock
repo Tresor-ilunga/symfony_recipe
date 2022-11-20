@@ -7617,16 +7617,16 @@
         },
         {
             "name": "vich/uploader-bundle",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dustin10/VichUploaderBundle.git",
-                "reference": "76bbb31050fc190841b9c9554f1796c4f6eb619b"
+                "reference": "6c1263680312d0b788830c70c1087dade9feddb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/76bbb31050fc190841b9c9554f1796c4f6eb619b",
-                "reference": "76bbb31050fc190841b9c9554f1796c4f6eb619b",
+                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/6c1263680312d0b788830c70c1087dade9feddb8",
+                "reference": "6c1263680312d0b788830c70c1087dade9feddb8",
                 "shasum": ""
             },
             "require": {
@@ -7642,7 +7642,7 @@
                 "symfony/http-kernel": "^5.4 || ^6.0",
                 "symfony/mime": "^5.4 || ^6.0",
                 "symfony/property-access": "^5.4 || ^6.0",
-                "symfony/string": "^6.0"
+                "symfony/string": "^5.4 || ^6.0"
             },
             "conflict": {
                 "doctrine/annotations": "<1.12",
@@ -7720,9 +7720,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dustin10/VichUploaderBundle/issues",
-                "source": "https://github.com/dustin10/VichUploaderBundle/tree/2.0.0"
+                "source": "https://github.com/dustin10/VichUploaderBundle/tree/2.0.1"
             },
-            "time": "2022-09-05T09:15:57+00:00"
+            "time": "2022-11-15T07:11:46+00:00"
         },
         {
             "name": "webmozart/assert",

@@ -10,6 +10,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[UniqueEntity('name')]
 #[ORM\HasLifecycleCallbacks]
@@ -25,6 +27,7 @@ class Recipe
     #[Assert\Length(min: 2, max: 50)]
     #[Assert\NotBlank()]
     private ?string $name;
+    
 
     #[ORM\Column(nullable: true)]
     #[Assert\Positive()]
@@ -106,6 +109,8 @@ class Recipe
 
         return $this;
     }
+
+
 
     public function getTime(): ?int
     {
