@@ -46,7 +46,7 @@ class IngredientController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Route('ingredient/nouveau', name: 'ingredient.new', methods: ['GET', 'POST'])]
+    #[Route('ingredient/creation', name: 'ingredient.new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
@@ -120,6 +120,7 @@ class IngredientController extends AbstractController
      * @return Response
      */
     #[Route('ingredient/suppression/{id}', name: 'ingredient.delete', methods: ['GET', 'POST'])]
+    #[Security("is_granted('ROLE_USER') and user === ingredient.getUser()")]
     public function delete(EntityManagerInterface $manager, Ingredient $ingredient): Response
     {
         if (!$ingredient)

@@ -23,7 +23,9 @@
                     <div class="card border-primary mb-3 ml-2" style="max-width: 20rem;">
                         <div class="card-header">Recette n°{{ recipe.id }}</div>
                         <div class="card-body">
-                            <h4 class="card-title">{{ recipe.name }}</h4>
+                            <h4 class="card-title">
+                                <a href="{{ path('recipe.show', {id: recipe.id}) }}">{{ recipe.name }}</a>
+                            </h4>
                             <p class="card-text">{{ recipe.description|slice(0, 100) ~ '...' }}</p>
                         </div>
                     </div>
