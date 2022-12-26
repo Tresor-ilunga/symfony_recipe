@@ -20,6 +20,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('recipe.index') }}">Mes recettes</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contact.index') }}">Contact</a>
+                    </li>
                 {% endif %}
 
             </ul>
@@ -34,6 +38,13 @@
                                    <a class="dropdown-item" href="{{ path('user.edit', {id : app.user.id}) }}">Modifier mes informations</a>
                                    <a class="dropdown-item" href="{{ path('user.edit.password', {id : app.user.id}) }}">Modifier mon mot de passe</a>
                                    <div class="dropdown-divider"></div>
+
+                                   {% if 'ROLE_ADMIN' in app.user.roles %}
+                                       <a class="dropdown-item" href="{{ path('admin.index') }}">Administration</a>
+                                       <div class="dropdown-divider"></div>
+                                   {% endif %}
+
+
                                    <a class="dropdown-item" href="{{ path('security.logout') }}">Déconnexion</a>
                                </div>
                            </li>
