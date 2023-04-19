@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\MarkRepository;
@@ -9,12 +11,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+/**
+ * Class Mark
+ * @author Tresor-ilunga <ilungat82@gmail.com>
+ */
 #[ORM\Entity(repositoryClass: MarkRepository::class)]
-#[UniqueEntity(
-    fields: ['user', 'recipe'],
-    message: 'Cet utilisateur a déjà noté cette recette.',
-    errorPath: 'user'
-)]
+#[UniqueEntity(fields: ['user', 'recipe'], message: 'Cet utilisateur a déjà noté cette recette.', errorPath: 'user')]
 class Mark
 {
     #[ORM\Id]

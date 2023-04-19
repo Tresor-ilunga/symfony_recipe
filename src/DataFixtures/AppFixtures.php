@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DataFixtures;
 
 use App\Entity\Contact;
@@ -11,8 +13,12 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+
+/**
+ * Class AppFixtures
+ * @author Tresor-ilunga <ilungat82@gmail.com>
+ */
 class AppFixtures extends Fixture
 {
     /**
@@ -31,7 +37,7 @@ class AppFixtures extends Fixture
         $users = [];
 
         $admin = new User();
-        $admin->setFullName('Administrateur de Recipe')
+        $admin->setFullName('Admin')
             ->setPseudo(null)
             ->setEmail('admin@recipe.com')
             ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])

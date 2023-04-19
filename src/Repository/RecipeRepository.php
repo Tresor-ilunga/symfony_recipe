@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Recipe;
@@ -8,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
+ * @author Tresor-ilunga <ilungat82@gmail.com>
  *
  * @method Recipe|null find($id, $lockMode = null, $lockVersion = null)
  * @method Recipe|null findOneBy(array $criteria, array $orderBy = null)
@@ -21,6 +24,13 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
+    /**
+     * This method allow us to save an entity
+     *
+     * @param Recipe $entity
+     * @param bool $flush
+     * @return void
+     */
     public function save(Recipe $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +40,13 @@ class RecipeRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * This method allow us to remove an entity
+     *
+     * @param Recipe $entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Recipe $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Ingredient;
@@ -8,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Ingredient>
+ * @author Tresor-ilunga <ilungat82@gmail.com>
  *
  * @method Ingredient|null find($id, $lockMode = null, $lockVersion = null)
  * @method Ingredient|null findOneBy(array $criteria, array $orderBy = null)
@@ -21,6 +24,14 @@ class IngredientRepository extends ServiceEntityRepository
         parent::__construct($registry, Ingredient::class);
     }
 
+
+    /**
+     * This method is used to save an entity to the database.
+     *
+     * @param Ingredient $entity
+     * @param bool $flush
+     * @return void
+     */
     public function save(Ingredient $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +41,13 @@ class IngredientRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * This method is used to remove an entity from the database.
+     *
+     * @param Ingredient $entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Ingredient $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -38,29 +56,4 @@ class IngredientRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return Ingredient[] Returns an array of Ingredient objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('i.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Ingredient
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form;
 
 use App\Entity\Ingredient;
@@ -21,16 +23,33 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
+/**
+ * Class RecipeType
+ * @author Tresor-ilunga <ilungat82@gmail.com>
+ */
 class RecipeType extends AbstractType
 {
 
+    /** @var TokenStorageInterface  */
     private $token;
 
+    /**
+     * This is the constructor of the class RecipeType
+     *
+     * @param TokenStorageInterface $token
+     */
     public function __construct(TokenStorageInterface $token)
     {
         $this->token = $token;
     }
 
+    /**
+     * This method is used to build the form
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -168,6 +187,13 @@ class RecipeType extends AbstractType
             ]);
     }
 
+
+    /**
+     * This method is used to configure the options
+     *
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

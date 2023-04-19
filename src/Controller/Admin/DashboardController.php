@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\Contact;
@@ -11,8 +13,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class DashboardController
+ * @author Tresor-ilunga <ilungat82@gmail.com>
+ */
 class DashboardController extends AbstractDashboardController
 {
+    /**
+     * This method is used to render the dashboard.
+     *
+     * @return Response
+     */
     #[Route('/admin', name: 'admin.index')]
     #[IsGranted('ROLE_ADMIN')]
     public function index(): Response
@@ -20,6 +31,11 @@ class DashboardController extends AbstractDashboardController
         return $this->render('admin/dashboard.html.twig');
     }
 
+    /**
+     * This method configures the properties of the dashboard.
+     *
+     * @return Dashboard
+     */
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
@@ -27,6 +43,11 @@ class DashboardController extends AbstractDashboardController
             ->renderContentMaximized();
     }
 
+    /**
+     * This method is used to generate the sidebar menu in the back-end.
+     *
+     * @return iterable
+     */
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');

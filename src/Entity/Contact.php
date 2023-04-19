@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
@@ -8,6 +10,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Contact
+ * @author Tresor-ilunga <ilungat82@gmail.com>
+ */
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
 {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form;
 
 use App\Entity\Ingredient;
@@ -11,8 +13,20 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class IngredientType
+ * @author Tresor-ilunga <ilungat82@gmail.com>
+ */
 class IngredientType extends AbstractType
 {
+
+    /**
+     * This method is used to build the form.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -52,6 +66,12 @@ class IngredientType extends AbstractType
             ]);
     }
 
+    /**
+     * This method is used to configure the options for this type.
+     *
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

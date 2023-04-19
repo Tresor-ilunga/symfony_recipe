@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\Contact;
@@ -12,13 +14,26 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/**
+ * Class ContactCrudController
+ * @author Tresor-ilunga <ilungat82@gmail.com>
+ */
 class ContactCrudController extends AbstractCrudController
 {
+    /**
+     * @return string
+     */
     public static function getEntityFqcn(): string
     {
         return Contact::class;
     }
 
+    /**
+     * This method configures the 'index' page of the CRUD controller.
+     *
+     * @param Crud$crud
+     * @return Crud
+     */
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -29,6 +44,12 @@ class ContactCrudController extends AbstractCrudController
     }
 
 
+    /**
+     * This method configures the fields displayed by the CRUD controller.
+     *
+     * @param string $pageName
+     * @return iterable
+     */
     public function configureFields(string $pageName): iterable
     {
         return [

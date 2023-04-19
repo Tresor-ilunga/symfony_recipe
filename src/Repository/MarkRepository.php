@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Mark;
@@ -8,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Mark>
+ * @author Tresor-ilunga <ilungat82@gmail.com>
  *
  * @method Mark|null find($id, $lockMode = null, $lockVersion = null)
  * @method Mark|null findOneBy(array $criteria, array $orderBy = null)
@@ -21,6 +24,13 @@ class MarkRepository extends ServiceEntityRepository
         parent::__construct($registry, Mark::class);
     }
 
+    /**
+     * This method is used to save a mark
+     *
+     * @param Mark $entity
+     * @param bool $flush
+     * @return void
+     */
     public function save(Mark $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +40,14 @@ class MarkRepository extends ServiceEntityRepository
         }
     }
 
+
+    /**
+     * This method is used to remove a mark
+     *
+     * @param Mark $entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Mark $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -38,29 +56,4 @@ class MarkRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return Mark[] Returns an array of Mark objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Mark
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
