@@ -1,24 +1,25 @@
 # Recipe
 
-Recipe est une application qui va te permettre de créer des recettes
-à base d'ingrédients.
+Recipe is an application that lets you create recipes
+based on ingredients.
 
-## Environnement de développement
+## Development environment
 
-### Prés-requis
+### Prerequisites
 
 * PHP 8.1
 * Composer
 * Symfony CLI
+* Docker & Docker-compose
 
-Vous pouvez vérifier les prés-requis (sauf Docker et Docker-compose) avec la commande suivante (de la CLI symfony) :
+You can check the prerequisites (except Docker and Docker-compose) with the following command (from the symfony CLI):
 
 ```bash
 symfony check:requirements
 ```
 
-### Lancer l'environnement de développement
+### Starting the development environment
 
 ```bash
-symfony serve -d
+docker-compose up -d
 ```
